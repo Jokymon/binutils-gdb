@@ -1,0 +1,13 @@
+language: c
+
+compiler:
+  - gcc
+
+before_install:
+  - sudo apt-get install mingw-w64 texi2html
+
+script:
+  - mkdir build
+  - cd build
+  - ../configure --host=i686-w64-mingw32 --enable-targets=all --with-sysroot --disable-nls --disable-werror
+  - make
