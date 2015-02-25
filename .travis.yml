@@ -11,5 +11,5 @@ before_install:
 script:
   - mkdir build
   - cd build
-  - ../configure --host=i686-w64-mingw32 --enable-targets=all --with-sysroot --disable-nls --disable-werror
+  - ../configure --build=i686-linux-gnu --host=i686-w64-mingw32 --enable-targets=all --with-sysroot --disable-nls --disable-werror
   - make
