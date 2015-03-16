@@ -3,18 +3,31 @@ language: c
 compiler:
   - gcc
 
+env:
+  global:
+  - ACCESS_LEVEL=sandbox
+  - secure: VaHuoIrE6Nud7DhS6Nl7fKlA0RcXCzMIfvvO/oWe0goGlWaetnn1eDuDCsJdVIw9MsGGfzlUKCQMba7JjTFa7jYzQEueQjsx0cg5J4reLsybjH5Mqh93kFwiklZrlqYeKb3vCpoDoioC2iwMMjIk1mLVzHpRaU/P5Ka7hJpN6pM=
+  - secure: ACob4PuKfIFreAaYLqaRcJ/XzQmFA6TD/ZD+yRzLLzLAY6jgN2+6GQRot5eBoNGzjrmyikMNSrKxqiR2UgHshvfleDjXgAfPxpkEf8Bu7Zb3ewvaHJcKryx63s8dje1/ZFCw/Rra5nmCzXzmtkpYr7JKmOS1p7F4dlB31fxwurg=
+  - secure: T5N+uSOhlvaC4jVwUVCvgsCbyjAM8mMUuGauQsKuEQnPHcZepVGjZJr75nBMDJ3fkhdPV3eXpdk6BDtDs4eSjtgUaeULz5w8XEOkL5yMoxz7unLmJuri0A4KhCcccsK+vutxl12mx53k4iYge7cyiyrjKd+jiyQmz2mEjnG3XGU=
+  - secure: WtJ/qVXCNVV5kh37haWGKhfTuRxl70cHqFZy1lS61WGV1mYVpds+2AMtKlOHaChNSN41Xb26NgEqN5TdKBE3wZtTjBx9HqWpCPxGJa1i41lCJIjroEdEC1eugAnOBubyehQ+PwB1FNF6Fm813JLZIhaSAWft6aWaCDw7h2Ek8eY=
+
 before_install:
   - sudo apt-get install -y texinfo texi2html
   - sudo apt-get install -y flex bison
   - sudo apt-get install -y binutils-mingw-w64-i686
   - sudo apt-get install -y gcc-mingw-w64-i686 gcc-mingw-w64-x86-64
   - sudo apt-get install -y mingw-w64 gcc-mingw-w64
+  - sudo apt-get install -y zip
 
 script:
   - export CC=i686-w64-mingw32-gcc
   - export CXX=i686-w64-mingw32-g++
   - mkdir build
   - cd build
-  - ../configure --build=i686-linux-gnu --host=i686-w64-mingw32 --enable-targets=all --with-sysroot --disable-nls --disable-werror
+  - ../configure --build=i686-linux-gnu --host=i686-w64-mingw32 --enable-targets=all --with-sysroot --disable-nls --disable-werror --prefix=$HOME/opt
   - make
   - cat config.log
+
+after_success:
+  - zip -r binutils.zip $HOME/opt
+  - ./build_scripts/dropbox_uploader.sh upload binutils.zip binutils.zip
