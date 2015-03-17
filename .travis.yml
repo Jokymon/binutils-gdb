@@ -12,6 +12,7 @@ env:
   - secure: WtJ/qVXCNVV5kh37haWGKhfTuRxl70cHqFZy1lS61WGV1mYVpds+2AMtKlOHaChNSN41Xb26NgEqN5TdKBE3wZtTjBx9HqWpCPxGJa1i41lCJIjroEdEC1eugAnOBubyehQ+PwB1FNF6Fm813JLZIhaSAWft6aWaCDw7h2Ek8eY=
 
 before_install:
+  - sudo apt-get update
   - sudo apt-get install -y texinfo texi2html
   - sudo apt-get install -y flex bison
   - sudo apt-get install -y gcc-mingw-w64 mingw-w64
