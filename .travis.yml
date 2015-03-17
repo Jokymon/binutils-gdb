@@ -15,6 +15,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install -y texinfo texi2html
   - sudo apt-get install -y flex bison
+  - sudo apt-get install -y gcc-mingw-w64-x86-64 gcc-mingw-w64-i686
   - sudo apt-get install -y gcc-mingw-w64 mingw-w64
   - sudo apt-get install -y zip
 
