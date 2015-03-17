@@ -31,4 +31,4 @@ script:
 after_success:
   - cd ..
   - zip -r binutils.zip $HOME/opt
-  - ./build_scripts/dropbox_uploader.sh upload binutils.zip binutils.zip
+  - ./build_scripts/dropbox.sh upload binutils.zip binutils.zip
